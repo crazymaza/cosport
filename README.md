@@ -1,46 +1,49 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
 ### `npm start`
+- Запускает тестовый сервер и реакт приложение
+- Настройки для тестового сервера прописаны в файле package.json в команде scripts.server
+- Сервер запускается на порту 4000.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Запускает тесты
 
 ### `npm run build`
+Собирает весь проект для продакшена и складывает его в папку build
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **Структура проекта**
+> По поводу структуры и подходов к разработке необходимо обговорить отдельно с командой.
+ + Данные(имитация базы данных), чтобы можно было проверить graphql запросы, находятся в файле db.ts
+ + Создана отдельная папка в которой находится настройка **apollo-client**, она называется **apollo**.
+   + В данной папке находится файл client.ts в котором указаны адреса подключения к БД. 
+     Необходимо поменять второй адрес (`https://cosport.ru/graphql`) как только будет известен рабочий адрес для подключения. 
+   + Также имееются 2 папки в **querys** и **mutations** в которых можно писать gql запросы и потом их импортировать в нужные места.
+ + Создана папка **pages** в которой можно размещать основные страницы сайта.
+ + В папке **common** нужно хранить какие-то общие для страниц функции, переменные, переиспользуемые внутренние компоненты (кнопки, модальные окна и т.д.).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### **Процесс разработки**
++ Каждый компонент должен сохраняться в отдельном файле с названием ИмяКомпонента.tsx + Папка в которой лежит компонент называется с маленькой буквы, название файла компонента и экспортируемой функции в кемелкейсе с большой буквы.
++ Если имеется вложенный компонент, который используется только в родительском, то можно сделать подпапку в родительском с названием **parts** и там разместить дочерний компонент.
++ Избегать пробрасывание пропсов на больше чем 2 уровня. Т.е. только родитель -> потомок.
++ Предлагаю использовать scss и систему модулей <название файла>.module.scss (***обсуждаемо***)
++ Классы по методологии БЭМ, также избегать большой вложенности, чтобы__не__было__вот_так.
+```html
+    <head class="head">
+        <title class="head__title">Test</title>
+    </head>
+    <body>
+        <nav class="navigation">
+            <ul class="navigation__list">
+                <li class="list__item">
+                    <a href="#" class="item__link">
+                        Home
+                    </a>
+                </li>
+            </ul>
+            <button class="navigation__btn">Show</button>
+        </nav>
+    </body>
+```
++ Если много параметров/пропсов, то определять их тип в интерфейсе.
++ Указывать тип возвращаемого значения из метода
++ Стараться избегать типа *any*
++ 1 задача = 1 ветка
