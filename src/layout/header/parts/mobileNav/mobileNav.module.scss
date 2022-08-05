@@ -1,0 +1,141 @@
+@use '../../../../assets/scss/variables'as v;
+@use '../../../../assets/scss/mixins'as m;
+
+.menuWrapper {
+    display: block;
+    width: 50% !important;
+    top: 0;
+    background-color: v.$color-white;
+
+    &>div {
+        width: 100%;
+    }
+}
+
+/* Position and sizing of burger button */
+.bmBurgerButton {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 36px;
+    top: v.$headerMenuTopMargin + 20px;
+
+    &>button {
+        box-shadow: none;
+    }
+}
+
+/* Color/shape of burger icon bars */
+.bmBurgerBar {
+    background: #184F84;
+    border-radius: 3px;
+}
+
+/* Position and sizing of clickable cross button */
+.bmCrossButton {
+    height: 24px;
+    width: 24px;
+
+    &>button {
+        box-shadow: none;
+    }
+}
+
+/* Color/shape of close button cross */
+.bmCrossClass {
+    background: #bdc3c7;
+}
+
+/*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+.bmMenuWrap {
+    position: fixed;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Wrapper for item list */
+.bmItemList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling of overlay */
+.bmOverlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.link {
+    position: relative;
+    display: block;
+    width: 90%;
+    height: 40px;
+    margin-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 40px;
+    color: v.$color-black;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+
+    &:hover:not(&[aria-current="page"]) {
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -5px;
+            right: 0;
+            height: 50px;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            background-color: lighten(#005FEE, 10%);
+            opacity: 0.12;
+            animation: 0.5s ease both active;
+        }
+    }
+
+    &Active {
+        position: relative;
+        color: #005FEE;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -5px;
+            width: 100%;
+            right: 0;
+            height: 50px;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            background-color: #005FEE;
+            opacity: 0.12;
+        }
+    }
+}
+
+@keyframes active {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}

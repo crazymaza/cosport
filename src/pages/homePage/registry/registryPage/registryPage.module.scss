@@ -1,0 +1,67 @@
+.registryPage {
+    position: relative;
+    width: 1298px;
+    height: 596px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FFFFFF;
+        background-image: url("data:image/svg+xml,%3Csvg width='498' height='500' viewBox='0 0 498 500' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.4' d='M248.625 499.643C282.196 499.643 312.233 495.088 339.326 487.116C358.173 481.422 375.842 473.45 391.155 464.34C411.769 451.812 429.438 436.438 443.573 418.786C457.119 402.843 467.721 384.622 475.966 365.262C490.101 332.236 497.169 295.793 497.169 257.642L497.169 38.9873L391.744 38.9873L391.744 208.673C391.744 287.821 375.842 345.901 305.754 364.692C300.454 366.4 293.975 367.539 288.085 368.678C276.306 370.386 263.349 371.525 248.625 371.525C127.886 371.525 107.273 306.042 107.273 209.242L107.273 38.9873L284.552 38.9873L284.552 -89.1309L0.0804443 -89.1309L0.0804485 257.642C0.08045 386.33 79.591 499.643 248.625 499.643Z' fill='%230081FE'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: 41% 43%;
+        border-radius: 30px;
+        clip-path: polygon(0 0,
+                50% 20%,
+                90% 74%,
+                93% 80%,
+                103% 100%,
+                20% 100%,
+                0 100%,
+                0 20%);
+        z-index: -1;
+    }
+
+    .registryPageText {
+        max-width: 45%;
+        margin-left: 30px;
+
+        h1 {
+            font-weight: 700;
+            font-size: 44px;
+            line-height: 60px;
+            color: #0A142F;
+        }
+
+        p {
+            font-weight: 900;
+            font-size: 20px;
+            line-height: 30px;
+            color: #0A142F;
+        }
+    }
+
+    .registryPageForm {
+        position: absolute;
+        right: 70px;
+        bottom: 0;
+        width: 45%;
+    }
+
+    .icon {
+        position: absolute;
+        top: 1%;
+        left: 25%;
+        width: 498px;
+        height: 500px;
+        z-index: -1;
+    }
+}

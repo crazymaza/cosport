@@ -1,63 +1,29 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 import Logo from '../../assets/img/logo.png';
 import classes from './header.module.scss';
+import MobileHeader from './parts/mobileNav/MobileNav';
+import { MainNav } from './parts/mainNav/MainNav';
 
 const Header = () => {
-    const setActive = ({ isActive }: any): string =>
-        [classes.link, isActive ? classes.linkActive : undefined].join(" ");
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <header>
-            <Link to={'/'}>
-                <img src={Logo} alt="Логотип CoSport" className='logo' />
-                <span className='companyName'>CoSport</span>
+            <Link className={classes.logoWrapper} to={'/'}>
+                <img src={Logo} alt="Логотип CoSport" className={classes.logo} />
+                <span className={classes.companyName}>CoSport</span>
             </Link>
-            <nav>
-                <ul>
-                    <li>
-                        <NavLink
-                            to={'/'}
-                            className={setActive}
-                        >
-                            Главная
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={'team'}
-                            className={setActive}
-                        >
-                            Команды
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={'events'}
-                            className={setActive}
-                        >
-                            Мероприятия
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={'users'}
-                            className={setActive}
-                        >
-                            Пользователи
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={'settings'}
-                            className={setActive}
-                        >
-                            Настройки
-                        </NavLink>
-                    </li>
-                </ul>
-            </nav>
-            <button>Войти</button>
+            {
+                matches ? <MobileHeader />
+                    : <>
+                        <MainNav />
+                        <button>Войти</button>
+                    </>
+            }
         </header>
     )
 }

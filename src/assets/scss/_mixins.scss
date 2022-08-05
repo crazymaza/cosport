@@ -1,0 +1,25 @@
+@use './variables'as v;
+
+// transition
+@mixin transition($property: all, $duration: 0.2s, $easing: ease) {
+    transition: $property $duration $easing;
+}
+
+// images
+@mixin img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+// performance
+@mixin gpu {
+    transform: translate3d(0, 0, 0);
+}
+
+// media queries
+@mixin media($max-width) {
+    @media (max-width: $max-width) {
+        @content
+    }
+}
