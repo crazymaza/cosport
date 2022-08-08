@@ -3,8 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './layout/Layout';
 import MainPage from './pages/mainPage/MainPage';
 import RegistryPage from './pages/registry/registryPage/RegistryPage';
+import SportGrounds from './pages/sportGrounds/SportGrounds';
 
 const pagesElementPath: Array<{ path: string, element: JSX.Element }> = [
+  { path: 'sportground', element: <SportGrounds />},
   { path: 'teams', element: <></> },
   { path: 'events', element: <></> },
   { path: 'users', element: <></> },

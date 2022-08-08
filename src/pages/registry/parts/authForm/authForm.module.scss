@@ -19,12 +19,16 @@
         }
 
         .rememberLink {
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 21px;
+            font-weight: 500;
+            font-size: 14px;
             text-align: right;
             color: #0081FE;
             margin-bottom: 24px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                text-shadow: 0px 0px 24px lighten(#0081FE, 15%);
+            }
         }
 
         .submit {
@@ -38,6 +42,11 @@
             font-size: 14px;
             line-height: 16px;
             margin: 0 auto;
+            transition: all 0.3s ease;
+
+            &:hover {
+                box-shadow: 0px 0px 34px lighten(#0081FE, 15%);
+            }
         }
     }
 
@@ -54,17 +63,25 @@
 
         .regLink {
             color: #0081FE;
+            transition: all 0.3s ease;
+
+            &:hover {
+                text-shadow: 0px 0px 24px lighten(#0081FE, 15%);
+            }
         }
     }
 
     .social {
         margin: 0 auto;
+
         .socialGroup {
             display: flex;
             justify-content: space-around;
 
             img {
                 filter: grayscale(1);
+                transition: all 0.3s ease;
+
                 &:hover {
                     filter: grayscale(0);
                 }

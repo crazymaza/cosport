@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const menu: Array<{ path: string, title: string }> = [
     { path: '/', title: 'Главная' },
+    { path: 'sportground', title: 'Спортплощадки' },
     { path: 'teams', title: 'Команды' },
     { path: 'events', title: 'Мероприятия' },
     { path: 'users', title: 'Пользователи' },
