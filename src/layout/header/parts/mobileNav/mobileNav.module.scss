@@ -7,6 +7,10 @@
     top: 0;
     background-color: v.$color-white;
 
+    @include m.media(v.$phoneReg) {
+        width: 100%!important;
+    }
+
     &>div {
         width: 100%;
     }

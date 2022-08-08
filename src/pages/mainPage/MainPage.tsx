@@ -10,7 +10,7 @@ interface UserInterface {
     age: number,
 }
 
-const HomePage: React.FC = () => {
+const MainPage: React.FC = () => {
     const { loading, error, data } = useQuery(ALL_USERS);
 
     if (loading) {
@@ -46,4 +46,4 @@ const HomePage: React.FC = () => {
     )
 }
 
-export default HomePage;
+export default MainPage;

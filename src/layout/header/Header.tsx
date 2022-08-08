@@ -21,10 +21,12 @@ const Header = () => {
                 matches ? <MobileHeader />
                     : <>
                         <MainNav />
-                        <button>Войти</button>
+                        <Link to={'auth'} >
+                            <button>Войти</button>
+                        </Link>
                     </>
             }
-        </header>
+        </header >
     )
 }
 
