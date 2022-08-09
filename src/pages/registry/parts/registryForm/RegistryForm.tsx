@@ -1,33 +1,48 @@
 import React from 'react';
-import { Button, FormControl, TextField } from '@mui/material';
+import {Button, FormControl, TextField} from '@mui/material';
 import classes from './registryform.module.scss';
-import { Controller, FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {Controller, FieldValues, SubmitHandler, useForm} from 'react-hook-form';
+import {useNavigate} from 'react-router-dom';
+import {useMutation} from "@apollo/client";
+import {CREATE_USER} from "../../../../apollo/mutations/userMutation";
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const errorMessage: { [key: string]: string } = {
     passwordLength: 'Пароль должен быть не менее 8 символов',
     passwordRepeat: 'Пароли не совпадают.',
-}
+};
 
 const RegistryForm: React.FC = () => {
     const {
         handleSubmit,
         control,
         reset,
-        formState: { errors },
+        formState: {errors},
         watch
     } = useForm();
 
-    let navigate = useNavigate();
-  let location = useLocation();
+    const [setUser, { data, loading, error }] = useMutation(CREATE_USER);
+    const navigate = useNavigate();
 
-//   let from = location?.state?.from?.pathname || "/";
-
-    const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
-        alert(JSON.stringify(data));
-        if (errors === undefined) {
-            reset();
-        }
+    const onSubmit: SubmitHandler<FieldValues> = ({email, name, password, surname, phone}) => {
+        setUser({
+            // @ts-ignore
+            "object": {
+                "email": email,
+                "name": name,
+                "surname": surname,
+                "phone": phone,
+                "password": password,
+                "gender": true,
+                "isprofsportsman": false
+            }
+        });
+            // .then((res) => {
+            //     console.log(res);
+            //     Number(res.data) && navigate("/", {replace: true})
+            // })
+            // .catch((err) => console.log(err));
+        reset();
     };
 
     return (
@@ -40,14 +55,30 @@ const RegistryForm: React.FC = () => {
                     rules={{
                         required: true
                     }}
-                    name='fio'
+                    name='surname'
                     control={control}
-                    render={({ field: { onChange, value = '' } }) => {
+                    render={({field: {onChange, value = ''}}) => {
                         return <TextField
                             required
                             onChange={onChange}
                             value={value}
-                            label='Фамилия и имя' />
+                            label='Фамилия'/>
+                    }}
+                />
+            </FormControl>
+            <FormControl className={classes.input}>
+                <Controller
+                    rules={{
+                        required: true
+                    }}
+                    name='name'
+                    control={control}
+                    render={({field: {onChange, value = ''}}) => {
+                        return <TextField
+                            required
+                            onChange={onChange}
+                            value={value}
+                            label='Имя'/>
                     }}
                 />
             </FormControl>
@@ -58,7 +89,7 @@ const RegistryForm: React.FC = () => {
                     }}
                     name='email'
                     control={control}
-                    render={({ field: { onChange, value = '' } }) => {
+                    render={({field: {onChange, value = ''}}) => {
                         return <TextField
                             required
                             onChange={onChange}
@@ -72,9 +103,9 @@ const RegistryForm: React.FC = () => {
             </FormControl>
             <FormControl className={classes.input}>
                 <Controller
-                    name='tel'
+                    name='phone'
                     control={control}
-                    render={({ field: { onChange, value = '' } }) => {
+                    render={({field: {onChange, value = ''}}) => {
                         return <TextField
                             onChange={onChange}
                             value={value}
@@ -95,7 +126,7 @@ const RegistryForm: React.FC = () => {
                     }}
                     name='password'
                     control={control}
-                    render={({ field: { onChange, value = '' } }) => {
+                    render={({field: {onChange, value = ''}}) => {
                         return <TextField
                             required
                             onChange={onChange}
@@ -120,7 +151,7 @@ const RegistryForm: React.FC = () => {
                     }}
                     name='passwordRepeat'
                     control={control}
-                    render={({ field: { onChange, value = '' }, fieldState: { error } }) => {
+                    render={({field: {onChange, value = ''}, fieldState: {error}}) => {
                         return <TextField
                             required
                             onChange={onChange}
@@ -133,13 +164,14 @@ const RegistryForm: React.FC = () => {
                     }}
                 />
             </FormControl>
-            <Button
+            <LoadingButton
                 className={classes.submit}
                 type='submit'
                 variant='contained'
+                loading={loading}
             >
                 Зарегистрироваться
-            </Button>
+            </LoadingButton >
         </form>
     )
 }

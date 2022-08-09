@@ -11,7 +11,9 @@ const pagesElementPath: Array<{ path: string, element: JSX.Element }> = [
   { path: 'settings', element: <></> },
   { path: 'auth', element: <RegistryPage /> },
   { path: 'registration', element: <RegistryPage /> },
-]
+];
+
+
 
 const App: React.FC = () => {
   return (
