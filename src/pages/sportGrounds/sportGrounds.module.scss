@@ -1,6 +1,23 @@
 .sportGroundsContainer {
     display: flex;
+    flex-direction: column;
     width: 90vw;
     height: 50vh;
     margin: 5% auto;
+    gap: 30px;
+
+    .searchWrapper {
+        width: 467px;
+        height: 40px;
+
+        fieldset {
+            border-radius: 10px;
+        }
+    }
+
+    .mapContainer {
+        display: flex;
+        width: 90vw;
+        height: 70vh;
+    }
 }

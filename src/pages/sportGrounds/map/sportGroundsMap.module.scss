@@ -1,5 +1,7 @@
 .mapContainer {
     border: 1px solid rebeccapurple;
+    flex-grow: 1;
+    height: inherit;
 }
 
 a[href="https://leafletjs.com"], 
