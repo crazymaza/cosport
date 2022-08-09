@@ -36,12 +36,8 @@ const RegistryForm: React.FC = () => {
                 "gender": true,
                 "isprofsportsman": false
             }
-        });
-            // .then((res) => {
-            //     console.log(res);
-            //     Number(res.data) && navigate("/", {replace: true})
-            // })
-            // .catch((err) => console.log(err));
+        }).then((res) => Number(res.data) && navigate("/", {replace: true}))
+            .catch((err) => console.log(err));
         reset();
     };
 
